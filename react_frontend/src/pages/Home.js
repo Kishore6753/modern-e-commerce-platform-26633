@@ -26,6 +26,8 @@ export default function Home({ searchQuery }) {
       id: i.id,
       name: i.name,
       image: i.image || null, // Use null if no image
+      price: i.price,
+      rating: i.rating,
       key: `${i.id}-${idx}`,
     }));
   }, [data.items]);
@@ -74,6 +76,10 @@ export default function Home({ searchQuery }) {
                 </div>
                 <div className="product-body">
                   <h3 className="product-title" title={item.name}>{item.name}</h3>
+                  <div className="product-meta">
+                    <span className="price">${item.price?.toFixed(2)}</span>
+                    <span className="stars" aria-label={`Rating ${item.rating} out of 5`}>★ {item.rating}</span>
+                  </div>
                 </div>
               </div>
             ))}
