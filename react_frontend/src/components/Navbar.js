@@ -27,6 +27,12 @@ export default function Navbar({ onSearchChange, onOpenAuth }) {
           <span>YOUR MARKET</span>
         </a>
 
+        {/* Navigation */}
+        <div className="nav-links">
+          <a href="/men" className="nav-link">Men's</a>
+          <a href="/women" className="nav-link">Women's</a>
+        </div>
+
         {/* Search */}
         <form className="searchbar" onSubmit={onSubmit} role="search" aria-label="Product search">
           <input

@@ -11,7 +11,8 @@ import AuthModal from './components/AuthModal';
 import { createOrder } from './services/api';
 import { useCart } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
-import CategoriesBar from './components/CategoriesBar';
+import MenPage from './pages/MenPage';
+import WomenPage from './pages/WomenPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,6 +47,8 @@ function RoutedApp() {
 
   const routes = useMemo(() => ([
     { path: '/', element: <Home searchQuery={search} /> },
+    { path: '/men', element: <MenPage /> },
+    { path: '/women', element: <WomenPage /> },
     { path: '/product/:id', element: <DynamicProduct /> },
     { path: '/cart', element: <CartPage /> },
     { path: '/orders', element: <OrdersPage /> },
@@ -54,9 +57,10 @@ function RoutedApp() {
   return (
     <>
       {/* Top header with brand, search, sign-in, cart */}
-      <Navbar onSearchChange={setSearch} onOpenAuth={() => setAuthOpen(true)} />
-      {/* Horizontal categories row under header */}
-      <CategoriesBar />
+      <Navbar
+        onSearchChange={setSearch}
+        onOpenAuth={() => setAuthOpen(true)}
+      />
       <ScrollToTop />
       <Routes>
         {routes.map(r => <Route key={r.path} path={r.path} element={r.element} />)}
