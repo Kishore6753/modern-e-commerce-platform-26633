@@ -16,21 +16,38 @@ export default function Navbar({ onSearchChange, onOpenAuth }) {
   return (
     <nav className="navbar">
       <div className="container navbar-inner">
-        <div className="brand">
-          <span className="brand-badge">🌊</span>
-          <span>Ocean Shop</span>
+        <div className="header-actions" style={{gap: 12}}>
+          <div className="brand">
+            <span className="brand-badge">📍</span>
+            <span>YOUR MARKET</span>
+          </div>
+          <button className="btn-categories" type="button" aria-label="Browse categories">
+            ☰ <span>Categories</span>
+          </button>
         </div>
+
         <form className="searchbar" onSubmit={onSubmit} role="search" aria-label="Product search">
           <input
             className="input"
-            placeholder="Search minimalist products..."
+            placeholder="Search for vitamins, cosmetics, home and more..."
             value={q}
             onChange={e => setQ(e.target.value)}
             aria-label="Search"
           />
-          <button className="btn ghost" type="submit">Search</button>
+          <button className="btn" type="submit">Search</button>
         </form>
-        <div className="nav-actions">
+
+        <div className="nav-actions" style={{display:'inline-flex', alignItems:'center', gap:8}}>
+          <div className="nav-links" aria-hidden="true">
+            <a className="nav-link" href="#pharmacy">Pharmacy</a>
+            <a className="nav-link" href="#home">Home</a>
+            <a className="nav-link" href="#new">New</a>
+            <a className="nav-link" href="#care">Care</a>
+            <a className="nav-link" href="#cosmetics">Cosmetics</a>
+            <a className="nav-link" href="#baby">Baby</a>
+            <a className="nav-link" href="#men">For men</a>
+            <a className="nav-link" href="#sport">Sport</a>
+          </div>
           {user ? (
             <>
               <a className="btn ghost" href="/orders" aria-label="Orders">Orders</a>
@@ -40,7 +57,7 @@ export default function Navbar({ onSearchChange, onOpenAuth }) {
             <button className="btn ghost" onClick={onOpenAuth}>Sign in</button>
           )}
           <button className="btn" onClick={toggle} aria-label="Open cart">
-            Cart <span className="badge" aria-label={`${items.length} items in cart`}>{items.length}</span>
+            🛒 <span>Cart</span> <span className="badge" aria-label={`${items.length} items in cart`}>{items.length}</span>
           </button>
         </div>
       </div>

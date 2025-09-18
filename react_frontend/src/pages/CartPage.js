@@ -4,8 +4,8 @@ import { useCart } from '../context/CartContext';
 export default function CartPage() {
   const { items, total, remove, setQty, clear } = useCart();
   return (
-    <div className="container" style={{padding:'24px 0'}}>
-      <h2>Your cart</h2>
+    <div className="container app-surface" style={{padding:'24px', marginTop:16}}>
+      <h2 style={{marginTop:0}}>Your cart</h2>
       {items.length === 0 ? (
         <div className="empty-state">Your cart is empty.</div>
       ) : (

@@ -47,24 +47,64 @@ export default function Home({ searchQuery }) {
     return items;
   }, [data.items, filters, searchQuery]);
 
+  const resultsTitle = (() => {
+    const q = filters.category || searchQuery || '';
+    if (!loading) {
+      if (q) return `Found ${filtered.length} results for ${q}`;
+      return `Found ${filtered.length} results`;
+    }
+    return 'Loading results...';
+  })();
+
   return (
-    <div className="container layout">
-      <div className="filters">
-        <Filters values={filters} onChange={setFilters} categories={categories} />
-      </div>
-      <main>
-        {loading ? <Loader /> : (
-          filtered.length === 0 ? (
-            <div className="empty-state">No products found. Try adjusting filters.</div>
-          ) : (
-            <div className="grid" aria-live="polite">
-              {filtered.map(p => (
-                <ProductCard key={p.id} product={p} onOpen={setOpenProduct} />
-              ))}
+    <div className="page-shell">
+      <div className="container app-surface page-frame">
+        <div className="layout">
+          <div className="filters">
+            <Filters values={filters} onChange={setFilters} categories={categories} />
+          </div>
+
+          <section className="content-surface">
+            <div className="content-head">
+              <div className="breadcrumbs">Catalog / <b>{filters.category || 'All'}</b></div>
             </div>
-          )
-        )}
-      </main>
+
+            <div className="results-toolbar">
+              <h2 className="results-title">{resultsTitle}</h2>
+              <div className="toolbar-actions">
+                <select
+                  className="input"
+                  style={{height:40, width:200, background:'#fff'}}
+                  value={filters.sort}
+                  onChange={e => setFilters(prev => ({ ...prev, sort: e.target.value }))}
+                  aria-label="Sort by"
+                >
+                  <option value="">Sort by: Popularity</option>
+                  <option value="rating_desc">Sort by: Rating</option>
+                  <option value="price_asc">Sort by: Price (Low to High)</option>
+                  <option value="price_desc">Sort by: Price (High to Low)</option>
+                </select>
+                <button className="icon-btn" aria-label="Grid view">▦</button>
+                <button className="icon-btn" aria-label="List view">≣</button>
+                <button className="icon-btn" aria-label="More options">⋮</button>
+              </div>
+            </div>
+
+            {loading ? <Loader /> : (
+              filtered.length === 0 ? (
+                <div className="empty-state">No products found. Try adjusting filters.</div>
+              ) : (
+                <div className="grid" aria-live="polite">
+                  {filtered.map(p => (
+                    <ProductCard key={p.id} product={p} onOpen={setOpenProduct} />
+                  ))}
+                </div>
+              )
+            )}
+          </section>
+        </div>
+      </div>
+
       <ProductModal product={openProduct} onClose={() => setOpenProduct(null)} />
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import AppShell from './AppShell';
 import './styles.css';
+import './design.css';
 
 /**
  * PUBLIC_INTERFACE

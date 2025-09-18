@@ -24,8 +24,8 @@ export default function OrdersPage() {
   if (!user) return <div className="container empty-state">Please sign in to view your orders.</div>;
 
   return (
-    <div className="container" style={{padding:'24px 0'}}>
-      <h2>Orders</h2>
+    <div className="container app-surface" style={{padding:'24px', marginTop:16}}>
+      <h2 style={{marginTop:0}}>Orders</h2>
       {data.items.length === 0 ? (
         <div className="empty-state">No orders yet.</div>
       ) : (
