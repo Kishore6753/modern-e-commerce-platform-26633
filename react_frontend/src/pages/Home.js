@@ -7,7 +7,8 @@ import Loader from '../components/Loader';
 import bannerImg from '../assets/banner.png';
 
 export default function Home({ searchQuery }) {
-  const [filters, setFilters] = useState({ category: '', minPrice: '', maxPrice: '', sort: '' });
+  // Default to the single clothing category
+  const [filters, setFilters] = useState({ category: 'Dress Collection', minPrice: '', maxPrice: '', sort: '' });
   const [data, setData] = useState({ items: [], total: 0 });
   const [loading, setLoading] = useState(true);
   const [openProduct, setOpenProduct] = useState(null);
@@ -25,10 +26,10 @@ export default function Home({ searchQuery }) {
     return () => { mounted = false; };
   }, [searchQuery]);
 
+  // Only expose the single category to Filters
   const categories = useMemo(() => {
-    const set = new Set(data.items.map(i => i.category).filter(Boolean));
-    return Array.from(set);
-  }, [data.items]);
+    return ['Dress Collection'];
+  }, []);
 
   const filtered = useMemo(() => {
     let items = data.items;

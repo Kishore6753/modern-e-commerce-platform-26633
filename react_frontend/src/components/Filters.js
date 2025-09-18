@@ -2,6 +2,11 @@ import React from 'react';
 
 export default function Filters({ values, onChange, categories }) {
   const update = (patch) => onChange({ ...values, ...patch });
+
+  // Ensure category is always the single Dress Collection by default
+  const available = Array.isArray(categories) && categories.length > 0 ? categories : ['Dress Collection'];
+  const normalizedCategory = values.category || 'Dress Collection';
+
   return (
     <aside className="filters card" aria-label="Filters">
       <div className="filter-header">
@@ -10,9 +15,12 @@ export default function Filters({ values, onChange, categories }) {
 
       <div className="filter-section">
         <h4>Category</h4>
-        <select value={values.category} onChange={e => update({ category: e.target.value })} aria-label="Category">
-          <option value="">All</option>
-          {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+        <select
+          value={normalizedCategory}
+          onChange={e => update({ category: e.target.value })}
+          aria-label="Category"
+        >
+          {available.map(cat => <option key={cat} value={cat}>{cat}</option>)}
         </select>
       </div>
 
@@ -35,7 +43,12 @@ export default function Filters({ values, onChange, categories }) {
       </div>
 
       <div className="filter-section">
-        <button className="btn ghost" onClick={() => onChange({ category:'', minPrice:'', maxPrice:'', sort:'' })}>Clear filters</button>
+        <button
+          className="btn ghost"
+          onClick={() => onChange({ category:'Dress Collection', minPrice:'', maxPrice:'', sort:'' })}
+        >
+          Clear filters
+        </button>
       </div>
     </aside>
   );
