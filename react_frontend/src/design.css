@@ -482,6 +482,7 @@ img { max-width: 100%; display: block; }
   border: 1px dashed var(--divider);
   margin-bottom: 12px;
   overflow: hidden;
+  position: relative; /* Ensure proper stacking context */
 }
 
 .product-thumb img {
@@ -490,6 +491,8 @@ img { max-width: 100%; display: block; }
   width: auto;
   height: auto;
   object-fit: contain;
+  border-radius: 12px; /* Match the container's border radius */
+  transition: border-radius 0.2s ease; /* Smooth transition for radius changes */
 }
 .product-body { display: grid; gap: 8px; }
 .product-title {
