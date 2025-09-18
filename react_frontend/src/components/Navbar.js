@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { signOut } from '../services';
+import { FiUser, FiShoppingCart } from 'react-icons/fi';
 
 /**
  * Header/navbar renders a single top row:
@@ -43,13 +44,21 @@ export default function Navbar({ onSearchChange, onOpenAuth }) {
           {user ? (
             <>
               <a className="btn ghost" href="/orders" aria-label="Orders">Orders</a>
-              <button className="btn ghost" onClick={() => signOut()}>Sign out</button>
+              <button className="btn ghost" onClick={() => signOut()} aria-label="Sign out">
+                <FiUser aria-hidden="true" size={18} />
+                <span>Sign out</span>
+              </button>
             </>
           ) : (
-            <button className="btn ghost" onClick={onOpenAuth}>Sign in</button>
+            <button className="btn ghost" onClick={onOpenAuth} aria-label="Sign in">
+              <FiUser aria-hidden="true" size={18} />
+              <span>Sign in</span>
+            </button>
           )}
           <button className="btn" onClick={toggle} aria-label="Open cart">
-            🛒 <span>Cart</span> <span className="badge" aria-label={`${items.length} items in cart`}>{items.length}</span>
+            <FiShoppingCart aria-hidden="true" size={18} />
+            <span>Cart</span>
+            <span className="badge" aria-label={`${items.length} items in cart`}>{items.length}</span>
           </button>
         </div>
       </div>
