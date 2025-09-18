@@ -112,9 +112,11 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  /* Slightly larger gap to give breathing room around the enlarged search bar */
-  gap: 16px;
-  padding: 0 0; /* keep compact to fit single row */
+  /* Adjust gap for better spacing without nav links */
+  gap: 24px;
+  padding: 0 12px; /* add slight padding for edge cases */
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 
 /* Accessibility helper to hide text but keep for screen readers */
