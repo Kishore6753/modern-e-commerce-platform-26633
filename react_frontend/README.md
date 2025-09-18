@@ -1,82 +1,56 @@
-# Lightweight React Template for KAVIA
+# Ocean Shop – Modern E‑commerce React Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A minimalist, production‑ready React frontend for a modern e‑commerce platform with Supabase authentication, product catalogue, filters, cart, and order views. Uses an "Ocean Professional" theme.
 
 ## Features
+- Supabase auth (magic link): sign in/up, sign out
+- Product catalogue grid with side filters and search
+- Product detail modal and deep link route
+- Shopping cart (sidebar + dedicated page), totals
+- Orders page (requires auth) with placeholder backend
+- REST service layer with graceful mock fallbacks
+- Ocean Professional minimalist styling (no heavy UI frameworks)
+- Clean architecture for easy wiring to real backend and PostgreSQL later
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Quick start
+1) Install
+   npm install
 
-## Getting Started
+2) Set environment variables
+   cp .env.example .env
+   # Edit .env to include your Supabase URL and anon key
 
-In the project directory, you can run:
+3) Run
+   npm start
+   Open http://localhost:3000
 
-### `npm start`
+## Environment variables
+- REACT_APP_SUPABASE_URL: Supabase project URL
+- REACT_APP_SUPABASE_KEY: Supabase anon key
+- REACT_APP_API_BASE: Optional backend base URL (defaults to /api)
+- REACT_APP_SITE_URL: Optional redirect URL for Supabase emails (defaults to window.location.origin)
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project structure
+src/
+  components/        Reusable UI (Navbar, Filters, ProductCard, Modals, CartSidebar, Footer)
+  context/           Global state (AuthContext, CartContext)
+  pages/             Route pages (Home, Orders, Product, Cart)
+  services/          API and Auth wrappers (REST placeholders with mock fallback)
+  supabaseClient.js  Supabase client factory
+  AppShell.js        Router and app composition
+  styles.css         Theme and minimalist styles
+  App.js, index.js   Entrypoints
 
-### `npm test`
+## Backend integration notes
+- All REST calls are made in src/services/api.js. Replace placeholders with real endpoints as backend becomes available.
+- createOrder includes a payment integration placeholder; wire to your payment provider (e.g., Stripe) and backend order creation endpoint.
+- For PostgreSQL wiring, connect your backend to Supabase/Postgres and update API_BASE.
 
-Launches the test runner in interactive watch mode.
+## Accessibility and UX
+- Semantic roles for modals, cart, and messages.
+- Keyboard and screen reader friendly controls.
 
-### `npm run build`
+## Testing
+- Basic render test in App.test.js (expand with your own suites).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License: MIT
