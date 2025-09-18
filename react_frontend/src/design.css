@@ -93,6 +93,7 @@ img { max-width: 100%; display: block; }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin-top: 6px; /* slight separation from categories */
 }
 
 /* Improve stacking: banner sits above sticky navbar */
@@ -111,7 +112,8 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  padding: 0 0; /* keep compact to fit single row */
 }
 
 /* Accessibility helper to hide text but keep for screen readers */
@@ -220,6 +222,50 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
 }
 .nav-link.active { color: var(--text-primary); }
+
+/* Categories horizontal bar */
+.categories-bar {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid var(--divider);
+  position: sticky;
+  top: var(--header-h);
+  z-index: 45;
+}
+.categories-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+}
+.categories-title {
+  font-size: 14px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.categories-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px 0;
+}
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background: var(--surface-alt);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.category-chip:hover {
+  border-color: #A78BFA;
+  box-shadow: 0 6px 12px rgba(124,58,237,0.10);
+}
 
 /* Buttons */
 .btn {

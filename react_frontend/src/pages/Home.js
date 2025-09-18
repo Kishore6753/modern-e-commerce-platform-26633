@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard';
 import Filters from '../components/Filters';
 import ProductModal from '../components/ProductModal';
 import Loader from '../components/Loader';
+import bannerImg from '../assets/banner.png';
 
 export default function Home({ searchQuery }) {
   const [filters, setFilters] = useState({ category: '', minPrice: '', maxPrice: '', sort: '' });
@@ -58,6 +59,18 @@ export default function Home({ searchQuery }) {
 
   return (
     <div className="page-shell">
+      {/* Promotional banner placed under categories strip */}
+      <div
+        className="top-banner"
+        role="img"
+        aria-label="Promotional banner"
+        style={{
+          backgroundImage: `linear-gradient(0deg, rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url(${bannerImg})`,
+        }}
+      >
+        <span className="sr-only">Welcome to Your Market – seasonal offers and new arrivals</span>
+      </div>
+
       <div className="container app-surface page-frame">
         <div className="layout">
           <div className="filters">

@@ -11,6 +11,7 @@ import AuthModal from './components/AuthModal';
 import { createOrder } from './services/api';
 import { useCart } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
+import CategoriesBar from './components/CategoriesBar';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,7 +53,10 @@ function RoutedApp() {
 
   return (
     <>
+      {/* Top header with brand, search, sign-in, cart */}
       <Navbar onSearchChange={setSearch} onOpenAuth={() => setAuthOpen(true)} />
+      {/* Horizontal categories row under header */}
+      <CategoriesBar />
       <ScrollToTop />
       <Routes>
         {routes.map(r => <Route key={r.path} path={r.path} element={r.element} />)}
