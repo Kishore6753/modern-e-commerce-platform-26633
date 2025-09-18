@@ -7,8 +7,8 @@ import Loader from '../components/Loader';
 import bannerImg from '../assets/banner.png';
 
 export default function Home({ searchQuery }) {
-  // Default to the single clothing category
-  const [filters, setFilters] = useState({ category: 'Dress Collection', minPrice: '', maxPrice: '', sort: '' });
+  // Start with All for flexibility; map to mock data categories later if any
+  const [filters, setFilters] = useState({ category: 'All', minPrice: '', maxPrice: '', sort: '' });
   const [data, setData] = useState({ items: [], total: 0 });
   const [loading, setLoading] = useState(true);
   const [openProduct, setOpenProduct] = useState(null);
@@ -26,14 +26,19 @@ export default function Home({ searchQuery }) {
     return () => { mounted = false; };
   }, [searchQuery]);
 
-  // Only expose the single category to Filters
+  // Present broader top-level categories for the new dropdown structure
   const categories = useMemo(() => {
-    return ['Dress Collection'];
+    return ['All', "Men's", "Women's"];
   }, []);
 
   const filtered = useMemo(() => {
     let items = data.items;
-    if (filters.category) items = items.filter(i => i.category === filters.category);
+    // Only apply category filter when it's a specific one (not All)
+    if (filters.category && filters.category !== 'All') {
+      // Current mock data is dresses; for future, map items to gender if available
+      // As a placeholder, do not filter mock items since they don't have gender fields
+      items = items; // no-op; kept for future backend wiring
+    }
     if (filters.minPrice) items = items.filter(i => i.price >= Number(filters.minPrice));
     if (filters.maxPrice) items = items.filter(i => i.price <= Number(filters.maxPrice));
     if (searchQuery) {
@@ -50,7 +55,7 @@ export default function Home({ searchQuery }) {
   }, [data.items, filters, searchQuery]);
 
   const resultsTitle = (() => {
-    const q = filters.category || searchQuery || '';
+    const q = (filters.category && filters.category !== 'All') ? filters.category : (searchQuery || '');
     if (!loading) {
       if (q) return `Found ${filtered.length} results for ${q}`;
       return `Found ${filtered.length} results`;

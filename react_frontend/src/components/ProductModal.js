@@ -21,7 +21,7 @@ export default function ProductModal({ product, onClose }) {
             </div>
             <div className="helper">Category: {product.category} · ★ {product.rating}</div>
             <div><strong style={{fontSize:22}}>${product.price.toFixed(2)}</strong></div>
-            <p className="helper">Beautiful dress from our Dress Collection. Connect your backend to load full product details and sizing.</p>
+            <p className="helper">Beautiful piece from our curated collection. Connect your backend to load full product details and sizing.</p>
             <div style={{display:'flex', gap:12}}>
               <button className="btn" onClick={() => { add(product, 1); onClose(); }}>Add to cart</button>
               <button className="btn ghost" onClick={onClose}>Close</button>

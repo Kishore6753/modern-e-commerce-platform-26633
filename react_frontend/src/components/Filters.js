@@ -3,9 +3,9 @@ import React from 'react';
 export default function Filters({ values, onChange, categories }) {
   const update = (patch) => onChange({ ...values, ...patch });
 
-  // Ensure category is always the single Dress Collection by default
-  const available = Array.isArray(categories) && categories.length > 0 ? categories : ['Dress Collection'];
-  const normalizedCategory = values.category || 'Dress Collection';
+  // Provide flexible categories; default to All when not provided
+  const available = Array.isArray(categories) && categories.length > 0 ? categories : ['All'];
+  const normalizedCategory = values.category || available[0];
 
   return (
     <aside className="filters card" aria-label="Filters">
@@ -45,7 +45,7 @@ export default function Filters({ values, onChange, categories }) {
       <div className="filter-section">
         <button
           className="btn ghost"
-          onClick={() => onChange({ category:'Dress Collection', minPrice:'', maxPrice:'', sort:'' })}
+          onClick={() => onChange({ category: available[0], minPrice:'', maxPrice:'', sort:'' })}
         >
           Clear filters
         </button>
