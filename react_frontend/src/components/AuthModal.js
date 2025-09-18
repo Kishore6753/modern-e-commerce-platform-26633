@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signInWithEmail, signUpWithEmail } from '../services/auth';
+import { signInWithEmail, signUpWithEmail } from '../services';
 
 export default function AuthModal({ open, onClose }) {
   const [email, setEmail] = useState('');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { signOut } from '../services/auth';
+import { signOut } from '../services';
 
 export default function Navbar({ onSearchChange, onOpenAuth }) {
   const { items, toggle } = useCart();
