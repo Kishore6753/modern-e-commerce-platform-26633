@@ -85,7 +85,17 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-card);
 }
 
-/* Header (Navbar) */
+/* Decorative banner above navbar */
+.top-banner {
+  width: 100%;
+  min-height: 120px;
+  display: block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Improve stacking: banner sits above sticky navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -102,6 +112,23 @@ img { max-width: 100%; display: block; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
+}
+
+/* Accessibility helper to hide text but keep for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* Responsive banner sizing */
+@media (max-width: 1023px) {
+  .top-banner { min-height: 100px; }
+}
+@media (max-width: 767px) {
+  .top-banner { min-height: 80px; background-position: center top; }
 }
 .brand {
   display: inline-flex;
