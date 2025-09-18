@@ -20,7 +20,7 @@ export async function fetchProducts(params = {}) {
     console.info('Using mock products due to missing backend:', e.message);
     // Mock data adjusted for clothing-only catalog
     const raw = [
-      { id: 'p1', name: 'Ocean Breeze Dress', price: 69.99, category: 'Apparel', rating: 4.6, image: '', stock: 12 },
+      { id: 'p1', name: 'Coat Suit', price: 69.99, category: 'Apparel', rating: 4.6, image: '/assets/coat_suit.jpg', stock: 12 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
       { id: 'p3', name: 'Evening Satin Dress', price: 129.0, category: 'Apparel', rating: 4.8, image: '', stock: 5 },
       { id: 'p4', name: 'Casual Day Dress', price: 49.99, category: 'Apparel', rating: 4.4, image: '', stock: 30 },

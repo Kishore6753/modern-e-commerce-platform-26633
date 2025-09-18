@@ -25,7 +25,7 @@ export default function Home({ searchQuery }) {
     return items.map((i, idx) => ({
       id: i.id,
       name: i.name,
-      image: i.image || '', // Use empty string if no image
+      image: i.image || null, // Use null if no image
       key: `${i.id}-${idx}`,
     }));
   }, [data.items]);
