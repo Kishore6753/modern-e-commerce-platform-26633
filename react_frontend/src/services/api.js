@@ -21,14 +21,12 @@ export async function fetchProducts(params = {}) {
     // Mock data adjusted for clothing-only catalog
     const raw = [
       { id: 'p1', name: 'Coat Suit', price: 69.99, category: 'Apparel', rating: 4.6, image: '/assets/coat_suit.jpg', stock: 12 },
-      // New product added to mirror the same tile style as 'Coat Suit'
       { id: 'p7', name: 'Wireless Headphones', price: 119.99, category: 'Electronics', rating: 4.5, image: '/assets/20250919_044955_headphone.jpg', stock: 20 },
-      // Fridge image added to appear in the same section/style as other products
       { id: 'p8', name: 'Smart Refrigerator', price: 899.0, category: 'Electronics', rating: 4.6, image: '/assets/20250919_045216_fridge.jpg', stock: 6 },
-      // New image added to match the same grid section styling as other products (car image recently uploaded)
       { id: 'p9', name: 'Premium Coffee Maker', price: 149.0, category: 'Home Appliances', rating: 4.4, image: '/assets/20250919_045641_image.png', stock: 15 },
-      // Newly added image to match the same grid section and style as other products
       { id: 'p10', name: 'Urban Backpack', price: 59.0, category: 'Accessories', rating: 4.2, image: '/assets/20250919_050518_image.png', stock: 18 },
+      // Insert the new image as the 6th item to fill the last slot of the 6-item grid
+      { id: 'p11', name: 'Smartwatch Pro', price: 199.0, category: 'Electronics', rating: 4.4, image: '/assets/20250919_051117_image.png', stock: 14 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
       { id: 'p3', name: 'Evening Satin Dress', price: 129.0, category: 'Apparel', rating: 4.8, image: '', stock: 5 },
       { id: 'p4', name: 'Casual Day Dress', price: 49.99, category: 'Apparel', rating: 4.4, image: '', stock: 30 },
