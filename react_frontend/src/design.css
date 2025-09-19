@@ -355,6 +355,18 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   white-space: nowrap;
   transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+  line-height: 1; /* keep compact height */
+}
+
+.category-chip .cat-icon {
+  margin-right: 8px; /* balanced gap between icon and text */
+  color: var(--brand-700);
+  flex: 0 0 auto;
+}
+
+.category-chip .cat-label {
+  display: inline-block;
+  transform: translateY(0.5px); /* micro optical alignment */
 }
 
 /* Removed vertical expand item selectors; handled by inline-chips rules above */

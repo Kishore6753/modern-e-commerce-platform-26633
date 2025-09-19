@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  FaTshirt,
+  FaTv,
+  FaAppleAlt,
+  FaShoppingBasket,
+} from 'react-icons/fa';
 
 /**
  * PUBLIC_INTERFACE
@@ -58,11 +64,12 @@ export default function CategoriesBar() {
     nav(path);
   };
 
+  // Map categories to icons (clean, minimal choices)
   const categories = [
-    { key: 'fashion', label: 'Fashion' },
-    { key: 'electronics', label: 'Electronics' },
-    { key: 'food', label: 'Food' },
-    { key: 'grocery', label: 'Grocery' },
+    { key: 'fashion', label: 'Fashion', Icon: FaTshirt },
+    { key: 'electronics', label: 'Electronics', Icon: FaTv },
+    { key: 'food', label: 'Food', Icon: FaAppleAlt },
+    { key: 'grocery', label: 'Grocery', Icon: FaShoppingBasket },
   ];
 
   return (
@@ -87,20 +94,22 @@ export default function CategoriesBar() {
             className={`inline-chips ${open ? 'open' : ''} ${phase}`}
             aria-hidden={!open && phase !== 'closing'}
           >
-            {categories.map((c, idx) => (
-              <button
-                key={c.key}
-                type="button"
-                className="category-chip item"
-                style={{ '--i': idx }}
-                onClick={() => go(`/${c.key}`)}
-              >
-                {c.label}
-              </button>
-            ))}
+            {categories.map((c, idx) => {
+              const I = c.Icon;
+              return (
+                <button
+                  key={c.key}
+                  type="button"
+                  className="category-chip item"
+                  style={{ '--i': idx }}
+                  onClick={() => go(`/${c.key}`)}
+                >
+                  <I aria-hidden="true" size={16} className="cat-icon" />
+                  <span className="cat-label">{c.label}</span>
+                </button>
+              );
+            })}
           </div>
-
-          
         </div>
       </div>
     </div>
