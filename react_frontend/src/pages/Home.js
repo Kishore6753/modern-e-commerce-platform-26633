@@ -33,31 +33,41 @@ export default function Home({ searchQuery }) {
       key: `${i.id}-${idx}`,
     }));
 
-    // New image from provided attachment copied to public assets
-    const providedImageUrl = '/assets/20250919_053253_image.png';
+    // Ensure a handbag slot exists and is visible
+    const handbagImage = '/assets/20250919_051905_image.png';
+    const hasHandbag = base.some(b => (b.name || '').toLowerCase().includes('handbag') || b.image === handbagImage);
+    const handbagSlot = hasHandbag ? [] : [{
+      id: 'extra-handbag',
+      name: 'Leather Handbag',
+      image: handbagImage,
+      price: 129.0,
+      rating: 4.6,
+      key: 'extra-handbag',
+    }];
 
-    // First added slot shows the provided image using a generic title/price
-    const addedSlot1 = {
-      id: 'extra-slot-1',
+    // Featured drop image from provided attachment
+    const featuredImage = '/assets/20250919_053253_image.png';
+    const featuredSlot = [{
+      id: 'extra-featured',
       name: 'Featured Drop',
-      image: providedImageUrl,
+      image: featuredImage,
       price: 0,
       rating: 5.0,
-      key: 'extra-slot-1',
-    };
+      key: 'extra-featured',
+    }];
 
-    // Second added slot is a visual placeholder (no image)
-    const addedSlot2 = {
-      id: 'extra-slot-2',
+    // Placeholder slot for visual consistency
+    const placeholderSlot = [{
+      id: 'extra-coming-soon',
       name: 'Coming soon',
-      image: null, // This will trigger the styled placeholder frame
+      image: null,
       price: 0,
       rating: 0,
-      key: 'extra-slot-2',
-    };
+      key: 'extra-coming-soon',
+    }];
 
-    // Place the provided image in the last slot to satisfy "last product slot" requirement
-    return [...base, addedSlot2, addedSlot1];
+    // Deterministic order: base (up to 6) + handbag + placeholder + featured
+    return [...base, ...handbagSlot, ...placeholderSlot, ...featuredSlot];
   }, [data.items]);
 
   return (

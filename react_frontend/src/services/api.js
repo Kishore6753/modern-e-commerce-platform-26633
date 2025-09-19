@@ -25,6 +25,8 @@ export async function fetchProducts(params = {}) {
       { id: 'p8', name: 'Smart Refrigerator', price: 899.0, category: 'Electronics', rating: 4.6, image: '/assets/20250919_045216_fridge.jpg', stock: 6 },
       { id: 'p9', name: 'Premium Coffee Maker', price: 149.0, category: 'Home Appliances', rating: 4.4, image: '/assets/20250919_045641_image.png', stock: 15 },
       { id: 'p10', name: 'Urban Backpack', price: 59.0, category: 'Accessories', rating: 4.2, image: '/assets/20250919_050518_image.png', stock: 18 },
+      // Handbag product explicitly added to ensure handbag image is present in grid
+      { id: 'p12', name: 'Leather Handbag', price: 129.0, category: 'Accessories', rating: 4.6, image: '/assets/20250919_051905_image.png', stock: 11 },
       // Insert the new image as the 6th item to fill the last slot of the 6-item grid
       { id: 'p11', name: 'Smartwatch Pro', price: 199.0, category: 'Electronics', rating: 4.4, image: '/assets/20250919_051117_image.png', stock: 14 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
