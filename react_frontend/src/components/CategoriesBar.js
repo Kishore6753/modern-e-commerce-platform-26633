@@ -100,8 +100,7 @@ export default function CategoriesBar() {
             ))}
           </div>
 
-          {/* Optional subtle helper text remains inline and does not move layout */}
-          <span className="categories-title">Shop by</span>
+          
         </div>
       </div>
     </div>

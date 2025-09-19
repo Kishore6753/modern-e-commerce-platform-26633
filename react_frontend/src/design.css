@@ -285,12 +285,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden; /* ensure no vertical growth or overflow */
 }
 
-/* Title subtlety and spacing */
-.categories-title {
-  color: var(--text-secondary);
-  font-size: 13px;
-  margin-left: 6px;
-}
+
 
 /* Inline chips container next to the button */
 .inline-chips {
