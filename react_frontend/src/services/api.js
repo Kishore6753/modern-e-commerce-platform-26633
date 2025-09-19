@@ -27,6 +27,8 @@ export async function fetchProducts(params = {}) {
       { id: 'p10', name: 'Urban Backpack', price: 59.0, category: 'Accessories', rating: 4.2, image: '/assets/20250919_050518_image.png', stock: 18 },
       // Handbag product explicitly added to ensure handbag image is present in grid
       { id: 'p12', name: 'Leather Handbag', price: 129.0, category: 'Accessories', rating: 4.6, image: '/assets/20250919_051905_image.png', stock: 11 },
+      // Bike product added to restore bike image in the grid
+      { id: 'p13', name: 'City Road Bike', price: 499.0, category: 'Sports', rating: 4.5, image: '/assets/bike.png', stock: 5 },
       // Insert the new image as the 6th item to fill the last slot of the 6-item grid
       { id: 'p11', name: 'Smartwatch Pro', price: 199.0, category: 'Electronics', rating: 4.4, image: '/assets/20250919_051117_image.png', stock: 14 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
