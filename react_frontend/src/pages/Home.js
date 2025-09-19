@@ -56,14 +56,14 @@ export default function Home({ searchQuery }) {
       key: 'extra-featured',
     }];
 
-    // Placeholder slot for visual consistency
+    // Replace the empty placeholder slot with the bike image from public/assets
     const placeholderSlot = [{
-      id: 'extra-coming-soon',
-      name: 'Coming soon',
-      image: null,
-      price: 0,
-      rating: 0,
-      key: 'extra-coming-soon',
+      id: 'extra-bike',
+      name: 'City Road Bike',
+      image: '/assets/bike.png',
+      price: 499.0,
+      rating: 4.5,
+      key: 'extra-bike',
     }];
 
     // Deterministic order: base (up to 6) + handbag + placeholder + featured
