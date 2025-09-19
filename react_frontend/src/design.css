@@ -110,8 +110,8 @@ img { max-width: 100%; display: block; }
 .navbar-inner {
   height: var(--header-h);
   display: grid;
-  /* Leave space for category button + brand + flexible search + right actions */
-  grid-template-columns: auto auto 1fr auto;
+  /* New layout: (Brand + Categories stacked) | Search | Right actions */
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
   padding: 0 12px;
@@ -165,9 +165,9 @@ img { max-width: 100%; display: block; }
 
 /* Categories button (vibrant pill) */
 .btn-categories {
-  height: 40px;
-  padding: 0 14px;
-  border-radius: 20px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 18px;
   border: 1px solid transparent;
   background: var(--gradient-surface);
   color: var(--brand-700);
