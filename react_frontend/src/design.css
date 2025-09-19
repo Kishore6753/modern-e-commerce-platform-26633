@@ -264,7 +264,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-link.active { color: var(--text-primary); }
 
-/* Categories horizontal bar - animated row below navbar */
+/* Categories horizontal bar - stays constant height; chips expand inline */
 .categories-bar {
   width: 100%;
   background: #fff;
@@ -274,58 +274,77 @@ img { max-width: 100%; display: block; }
   z-index: 45;
 }
 
-/* Head row with the main "Categories" button */
-.catbar-head { height: 48px; }
-
-/* Expandable container - drives vertical push of content */
-.categories-expand {
-  overflow: hidden;
-  background: #fff;
-  border-top: 1px solid var(--divider);
+/* Single-row inline layout */
+.catbar-inline { padding: 0 24px; }
+.catbar-row {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  overflow: hidden; /* ensure no vertical growth or overflow */
 }
 
-/* Opening animation: fade+slide chips left->right while container emerges */
-@keyframes catRowEnter {
-  0% { opacity: 0; transform: translateY(-6px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Title subtlety and spacing */
+.categories-title {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-left: 6px;
 }
-@keyframes chipEnter {
+
+/* Inline chips container next to the button */
+.inline-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+  /* Start closed: visually collapsed to zero width for smooth inline expansion */
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: max-width .28s ease, opacity .22s ease, transform .22s ease;
+}
+
+/* When opening/open: allow content to take space; animate L->R */
+.inline-chips.open,
+.inline-chips.opening,
+.inline-chips.open {
+  /* Large enough to fit all chips; container keeps single row due to nowrap on parent */
+  max-width: 800px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* When closing: animate R->L by shifting and fading while reducing width */
+.inline-chips.closing {
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(6px);
+}
+
+/* Per-chip enter/exit micro animations with stagger */
+@keyframes chipEnterInline {
   0% { opacity: 0; transform: translateX(-8px) scale(0.98); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
-
-/* Closing animation: reverse order chips right->left then row fades up */
-@keyframes chipExit {
+@keyframes chipExitInline {
   0% { opacity: 1; transform: translateX(0) scale(1); }
   100% { opacity: 0; transform: translateX(8px) scale(0.98); }
 }
-@keyframes catRowExit {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-6px); }
-}
 
-/* Phases control */
-.categories-expand.opening {
-  animation: catRowEnter .22s ease-out;
-  padding: 8px 0 12px;
-  border-bottom: 1px solid var(--divider);
+/* Opening items */
+.inline-chips.opening .category-chip.item {
+  opacity: 0;
+  animation: chipEnterInline .18s ease-out forwards;
+  animation-delay: calc(var(--i) * 40ms);
 }
-.categories-expand.open {
-  padding: 8px 0 12px;
-  border-bottom: 1px solid var(--divider);
-}
-.categories-expand.closing {
-  animation: catRowExit .18s ease-in forwards;
-  padding: 0;
-}
+.inline-chips.open .category-chip.item { opacity: 1; }
 
-/* Chips row */
-.categories-chips {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 4px 0 8px;
-  overflow: hidden;
+/* Closing items reverse order */
+.inline-chips.closing .category-chip.item {
+  animation: chipExitInline .14s ease-in forwards;
+  /* Reverse based on count ~4; if count changes, still yields staggered effect */
+  animation-delay: calc((6 - var(--i)) * 30ms);
 }
 
 /* Chip base */
@@ -340,23 +359,10 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   font-size: 13px;
   white-space: nowrap;
+  transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
 }
 
-/* Enter animation per item with small stagger */
-.categories-expand.opening .category-chip.item {
-  opacity: 0;
-  animation: chipEnter .18s ease-out forwards;
-  animation-delay: calc(var(--i) * 40ms);
-}
-.categories-expand.open .category-chip.item {
-  opacity: 1;
-}
-
-/* Exit animation in reverse order */
-.categories-expand.closing .categories-chips .category-chip.item {
-  animation: chipExit .14s ease-in forwards;
-  animation-delay: calc((6 - var(--i)) * 30ms);
-}
+/* Removed vertical expand item selectors; handled by inline-chips rules above */
 
 .category-chip:hover {
   border-color: #A78BFA;

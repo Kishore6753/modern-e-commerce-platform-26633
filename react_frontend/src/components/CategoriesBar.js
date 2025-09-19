@@ -6,8 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
  * CategoriesBar
  * Minimalist Ocean Professional horizontal bar under navbar.
  * Clicking "Categories" reveals category buttons with a left-to-right animation,
- * pushing the content down. Collapse animates right-to-left.
- * Category click navigates via React Router.
+ * inline to the right of the Categories button with constant bar height.
+ * Collapse animates right-to-left. Category click navigates via React Router.
  */
 export default function CategoriesBar() {
   /** This is a public function. */
@@ -17,15 +17,16 @@ export default function CategoriesBar() {
   const loc = useLocation();
   const rowRef = useRef(null);
 
-  // Close the bar on route change to keep layout consistent
+  // Close on route change to keep layout consistent
   useEffect(() => {
     if (open) {
+      // trigger closing animation; keep element mounted to animate
       setPhase('closing');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loc.pathname]);
 
-  // When closing animation ends, mark as closed
+  // When closing animation ends, mark as closed (and unmount content)
   useEffect(() => {
     if (phase !== 'closing') return;
     const el = rowRef.current;
@@ -66,43 +67,42 @@ export default function CategoriesBar() {
 
   return (
     <div className="categories-bar" role="navigation" aria-label="Browse categories">
-      <div className="container" style={{ display: 'grid', alignItems: 'center' }}>
-        <div className="catbar-head" style={{ display: 'flex', alignItems: 'center', gap: 12, height: 48 }}>
+      <div className="container catbar-inline">
+        {/* Single-row flex container that never changes height */}
+        <div className="catbar-row" ref={rowRef}>
           <button
             type="button"
             className="btn-categories"
             aria-expanded={open}
-            aria-controls="categories-row"
+            aria-controls="categories-inline"
             onClick={toggle}
           >
             Categories
             <span aria-hidden="true" style={{ marginLeft: 6 }}>{open ? '▴' : '▾'}</span>
           </button>
-          <span className="categories-title" style={{ color: 'var(--text-secondary)' }}>Shop by</span>
-        </div>
 
-        {(open || phase === 'closing') && (
+          {/* Inline chips container: occupies horizontal space only; no vertical push */}
           <div
-            id="categories-row"
-            ref={rowRef}
-            className={`categories-expand ${phase}`}
-            aria-hidden={phase === 'idle'}
+            id="categories-inline"
+            className={`inline-chips ${open ? 'open' : ''} ${phase}`}
+            aria-hidden={!open && phase !== 'closing'}
           >
-            <div className="categories-chips">
-              {categories.map((c, idx) => (
-                <button
-                  key={c.key}
-                  type="button"
-                  className="category-chip item"
-                  style={{ '--i': idx }}
-                  onClick={() => go(`/${c.key}`)}
-                >
-                  {c.label}
-                </button>
-              ))}
-            </div>
+            {categories.map((c, idx) => (
+              <button
+                key={c.key}
+                type="button"
+                className="category-chip item"
+                style={{ '--i': idx }}
+                onClick={() => go(`/${c.key}`)}
+              >
+                {c.label}
+              </button>
+            ))}
           </div>
-        )}
+
+          {/* Optional subtle helper text remains inline and does not move layout */}
+          <span className="categories-title">Shop by</span>
+        </div>
       </div>
     </div>
   );
