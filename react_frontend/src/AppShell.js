@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import CategoriesBar from './components/CategoriesBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
@@ -13,6 +14,10 @@ import { useCart } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
 import MenPage from './pages/MenPage';
 import WomenPage from './pages/WomenPage';
+import FashionPage from './pages/categories/FashionPage';
+import ElectronicsPage from './pages/categories/ElectronicsPage';
+import FoodPage from './pages/categories/FoodPage';
+import GroceryPage from './pages/categories/GroceryPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,6 +54,10 @@ function RoutedApp() {
     { path: '/', element: <Home searchQuery={search} /> },
     { path: '/men', element: <MenPage /> },
     { path: '/women', element: <WomenPage /> },
+    { path: '/fashion', element: <FashionPage /> },
+    { path: '/electronics', element: <ElectronicsPage /> },
+    { path: '/food', element: <FoodPage /> },
+    { path: '/grocery', element: <GroceryPage /> },
     { path: '/product/:id', element: <DynamicProduct /> },
     { path: '/cart', element: <CartPage /> },
     { path: '/orders', element: <OrdersPage /> },
@@ -61,6 +70,8 @@ function RoutedApp() {
         onSearchChange={setSearch}
         onOpenAuth={() => setAuthOpen(true)}
       />
+      {/* New categories row directly under navbar */}
+      <CategoriesBar />
       <ScrollToTop />
       <Routes>
         {routes.map(r => <Route key={r.path} path={r.path} element={r.element} />)}

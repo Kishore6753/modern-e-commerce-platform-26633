@@ -264,7 +264,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-link.active { color: var(--text-primary); }
 
-/* Categories horizontal bar */
+/* Categories horizontal bar - animated row below navbar */
 .categories-bar {
   width: 100%;
   background: #fff;
@@ -273,24 +273,62 @@ img { max-width: 100%; display: block; }
   top: var(--header-h);
   z-index: 45;
 }
-.categories-inner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  height: 48px;
+
+/* Head row with the main "Categories" button */
+.catbar-head { height: 48px; }
+
+/* Expandable container - drives vertical push of content */
+.categories-expand {
+  overflow: hidden;
+  background: #fff;
+  border-top: 1px solid var(--divider);
 }
-.categories-title {
-  font-size: 14px;
-  color: var(--text-secondary);
-  white-space: nowrap;
+
+/* Opening animation: fade+slide chips left->right while container emerges */
+@keyframes catRowEnter {
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-.categories-list {
+@keyframes chipEnter {
+  0% { opacity: 0; transform: translateX(-8px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Closing animation: reverse order chips right->left then row fades up */
+@keyframes chipExit {
+  0% { opacity: 1; transform: translateX(0) scale(1); }
+  100% { opacity: 0; transform: translateX(8px) scale(0.98); }
+}
+@keyframes catRowExit {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+
+/* Phases control */
+.categories-expand.opening {
+  animation: catRowEnter .22s ease-out;
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--divider);
+}
+.categories-expand.open {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--divider);
+}
+.categories-expand.closing {
+  animation: catRowExit .18s ease-in forwards;
+  padding: 0;
+}
+
+/* Chips row */
+.categories-chips {
   display: flex;
   align-items: center;
   gap: 10px;
-  overflow-x: auto;
-  padding: 6px 0;
+  padding: 4px 0 8px;
+  overflow: hidden;
 }
+
+/* Chip base */
 .category-chip {
   display: inline-flex;
   align-items: center;
@@ -303,6 +341,23 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   white-space: nowrap;
 }
+
+/* Enter animation per item with small stagger */
+.categories-expand.opening .category-chip.item {
+  opacity: 0;
+  animation: chipEnter .18s ease-out forwards;
+  animation-delay: calc(var(--i) * 40ms);
+}
+.categories-expand.open .category-chip.item {
+  opacity: 1;
+}
+
+/* Exit animation in reverse order */
+.categories-expand.closing .categories-chips .category-chip.item {
+  animation: chipExit .14s ease-in forwards;
+  animation-delay: calc((6 - var(--i)) * 30ms);
+}
+
 .category-chip:hover {
   border-color: #A78BFA;
   box-shadow: 0 6px 12px rgba(124,58,237,0.10);
