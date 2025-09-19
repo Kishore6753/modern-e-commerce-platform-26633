@@ -34,7 +34,7 @@ export default function Home({ searchQuery }) {
     }));
 
     // New image from provided attachment copied to public assets
-    const providedImageUrl = '/assets/20250919_051905_image.png';
+    const providedImageUrl = '/assets/20250919_053253_image.png';
 
     // First added slot shows the provided image using a generic title/price
     const addedSlot1 = {
@@ -56,7 +56,8 @@ export default function Home({ searchQuery }) {
       key: 'extra-slot-2',
     };
 
-    return [...base, addedSlot1, addedSlot2];
+    // Place the provided image in the last slot to satisfy "last product slot" requirement
+    return [...base, addedSlot2, addedSlot1];
   }, [data.items]);
 
   return (
