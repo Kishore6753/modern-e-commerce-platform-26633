@@ -19,17 +19,44 @@ export default function Home({ searchQuery }) {
     return () => { mounted = false; };
   }, [searchQuery]);
 
-  // Prepare a small set of demo dresses (image + name only)
+  // Prepare a small set of demo products and add two extra display slots.
+  // One of the new slots will display the provided image from attachments,
+  // and the final extra slot remains an empty styled placeholder.
   const demoProducts = useMemo(() => {
-    const items = data.items.slice(0, 6); // Keep small demo set
-    return items.map((i, idx) => ({
+    // Base items from API/mocks
+    const base = data.items.slice(0, 6).map((i, idx) => ({
       id: i.id,
       name: i.name,
-      image: i.image || null, // Use null if no image
+      image: i.image || null,
       price: i.price,
       rating: i.rating,
       key: `${i.id}-${idx}`,
     }));
+
+    // New image from provided attachment copied to public assets
+    const providedImageUrl = '/assets/20250919_051905_image.png';
+
+    // First added slot shows the provided image using a generic title/price
+    const addedSlot1 = {
+      id: 'extra-slot-1',
+      name: 'Featured Drop',
+      image: providedImageUrl,
+      price: 0,
+      rating: 5.0,
+      key: 'extra-slot-1',
+    };
+
+    // Second added slot is a visual placeholder (no image)
+    const addedSlot2 = {
+      id: 'extra-slot-2',
+      name: 'Coming soon',
+      image: null, // This will trigger the styled placeholder frame
+      price: 0,
+      rating: 0,
+      key: 'extra-slot-2',
+    };
+
+    return [...base, addedSlot1, addedSlot2];
   }, [data.items]);
 
   return (
@@ -77,7 +104,9 @@ export default function Home({ searchQuery }) {
                 <div className="product-body">
                   <h3 className="product-title" title={item.name}>{item.name}</h3>
                   <div className="product-meta">
-                    <span className="price">${item.price?.toFixed(2)}</span>
+                    <span className="price">
+                      {typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : '$0.00'}
+                    </span>
                     <span className="stars" aria-label={`Rating ${item.rating} out of 5`}>★ {item.rating}</span>
                   </div>
                 </div>
