@@ -99,7 +99,19 @@ export default function Home({ searchQuery }) {
               <div key={item.key} className="product-card">
                 <div className="product-thumb">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      style={{
+                        /* Ensure all images, including the bike, fit uniformly within the stage */
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block'
+                      }}
+                    />
                   ) : (
                     <div style={{
                       width: '100%',

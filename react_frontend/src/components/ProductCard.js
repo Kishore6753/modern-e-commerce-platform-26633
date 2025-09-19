@@ -9,7 +9,18 @@ export default function ProductCard({ product, onOpen }) {
     <div className="product-card">
       <button className="product-thumb" onClick={() => onOpen(product)} aria-label={`View ${product.name}`}>
         {product.image ? (
-          <img src={product.image} alt={product.name} />
+          <img
+            src={product.image}
+            alt={product.name}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
+              display: 'block'
+            }}
+          />
         ) : (
           <span style={{color:'var(--text-tertiary)'}}>No image</span>
         )}

@@ -571,6 +571,13 @@ img { max-width: 100%; display: block; }
   border-radius: 12px; /* Match the container's border radius */
   transition: border-radius 0.2s ease; /* Smooth transition for radius changes */
 }
+
+/* Additional guard rail for oversized source images (e.g., bike asset):
+   Keeps images contained visually and consistent across different aspect ratios. */
+.product-thumb img {
+  /* The container is 220px tall; ensure the image never visually exceeds it */
+  max-height: 220px;
+}
 .product-body { display: grid; gap: 8px; }
 .product-title {
   font-size: 15px;
