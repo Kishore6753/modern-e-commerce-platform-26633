@@ -27,6 +27,8 @@ export async function fetchProducts(params = {}) {
       { id: 'p8', name: 'Smart Refrigerator', price: 899.0, category: 'Electronics', rating: 4.6, image: '/assets/20250919_045216_fridge.jpg', stock: 6 },
       // New image added to match the same grid section styling as other products (car image recently uploaded)
       { id: 'p9', name: 'Premium Coffee Maker', price: 149.0, category: 'Home Appliances', rating: 4.4, image: '/assets/20250919_045641_image.png', stock: 15 },
+      // Newly added image to match the same grid section and style as other products
+      { id: 'p10', name: 'Urban Backpack', price: 59.0, category: 'Accessories', rating: 4.2, image: '/assets/20250919_050518_image.png', stock: 18 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
       { id: 'p3', name: 'Evening Satin Dress', price: 129.0, category: 'Apparel', rating: 4.8, image: '', stock: 5 },
       { id: 'p4', name: 'Casual Day Dress', price: 49.99, category: 'Apparel', rating: 4.4, image: '', stock: 30 },
