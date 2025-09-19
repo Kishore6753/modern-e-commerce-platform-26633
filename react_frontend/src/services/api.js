@@ -25,6 +25,8 @@ export async function fetchProducts(params = {}) {
       { id: 'p7', name: 'Wireless Headphones', price: 119.99, category: 'Electronics', rating: 4.5, image: '/assets/20250919_044955_headphone.jpg', stock: 20 },
       // Fridge image added to appear in the same section/style as other products
       { id: 'p8', name: 'Smart Refrigerator', price: 899.0, category: 'Electronics', rating: 4.6, image: '/assets/20250919_045216_fridge.jpg', stock: 6 },
+      // New image added to match the same grid section styling as other products
+      { id: 'p9', name: 'Premium Coffee Maker', price: 149.0, category: 'Home Appliances', rating: 4.4, image: '/assets/20250919_045641_image.png', stock: 15 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
       { id: 'p3', name: 'Evening Satin Dress', price: 129.0, category: 'Apparel', rating: 4.8, image: '', stock: 5 },
       { id: 'p4', name: 'Casual Day Dress', price: 49.99, category: 'Apparel', rating: 4.4, image: '', stock: 30 },
