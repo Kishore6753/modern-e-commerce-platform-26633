@@ -56,11 +56,12 @@ export default function Home({ searchQuery }) {
       key: 'extra-featured',
     }];
 
-    // Replace the empty placeholder slot with the bike image from public/assets
+    // Replace one watch (smartwatch) slot with the newly provided bike image from attachments
     const placeholderSlot = [{
       id: 'extra-bike',
       name: 'City Road Bike',
-      image: '/assets/bike.png',
+      // Use the exact provided attachment copied to public/assets for consistent referencing
+      image: '/assets/20250919_064530_image.png',
       price: 499.0,
       rating: 4.5,
       key: 'extra-bike',
