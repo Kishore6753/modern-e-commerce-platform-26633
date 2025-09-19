@@ -23,6 +23,8 @@ export async function fetchProducts(params = {}) {
       { id: 'p1', name: 'Coat Suit', price: 69.99, category: 'Apparel', rating: 4.6, image: '/assets/coat_suit.jpg', stock: 12 },
       // New product added to mirror the same tile style as 'Coat Suit'
       { id: 'p7', name: 'Wireless Headphones', price: 119.99, category: 'Electronics', rating: 4.5, image: '/assets/20250919_044955_headphone.jpg', stock: 20 },
+      // Fridge image added to appear in the same section/style as other products
+      { id: 'p8', name: 'Smart Refrigerator', price: 899.0, category: 'Electronics', rating: 4.6, image: '/assets/20250919_045216_fridge.jpg', stock: 6 },
       { id: 'p2', name: 'Minimalist Summer Dress', price: 89.0, category: 'Apparel', rating: 4.3, image: '', stock: 7 },
       { id: 'p3', name: 'Evening Satin Dress', price: 129.0, category: 'Apparel', rating: 4.8, image: '', stock: 5 },
       { id: 'p4', name: 'Casual Day Dress', price: 49.99, category: 'Apparel', rating: 4.4, image: '', stock: 30 },
